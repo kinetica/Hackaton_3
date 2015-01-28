@@ -26,8 +26,8 @@ App.Router.map(function () {
 	});
 });
 
-App.WordView= Ember.View.extend({
-	templateName: 'word',
+App.WordView = Ember.View.extend({
+	templateName: "word"
 });
 
 App.WordController = Ember.ObjectController.extend({
@@ -43,6 +43,8 @@ App.WordController = Ember.ObjectController.extend({
     }
   }
 });
+
+
 
 App.WordRoute = Ember.Route.extend({
 	model: function(){
