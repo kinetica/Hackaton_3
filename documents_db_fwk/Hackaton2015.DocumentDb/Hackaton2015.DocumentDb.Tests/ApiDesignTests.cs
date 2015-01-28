@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Hackaton2015.DocumentDb.Framework;
@@ -13,11 +14,10 @@ namespace Hackaton2015.DocumentDb.Tests
         [TestMethod]
         public void UsingAzureDbKineticaApi()
         {
-            var store = new DocumentStoreOf<User>();
-
             var messages = DocumentStoreOf<User>.NewQuery()
-                                                .WithFilters()
-                                                .SortBy()
+                                                .AgainstCollection("LogEntries")
+                                                .WithFilters(x => x.Name == "Gabriel" && x.Enabled)
+                                                .SortBy(x=>x.Name)
                                                 .WithPagingInfoLike()
                                                 .PerformSearchAsync();
         }
@@ -27,5 +27,6 @@ namespace Hackaton2015.DocumentDb.Tests
     {
         public string Name { get; set; }
         public string Surname { get; set; }
+        public bool Enabled { get; set; }
     }
 }

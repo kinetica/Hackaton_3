@@ -1,18 +1,22 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
+using System.Linq.Expressions;
 using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 
 namespace Hackaton2015.DocumentDb.Framework
 {
-    public class DocumentStoreOf<T>
+    public class DocumentStoreOf<T> : INewQuery<T>, IAgainstCollection<T>, IWithFilters<T>, ISortedBy, IWithPagingInfo
     {
         private DocumentClient _client;
         private Database _database;
+        private string _collectioName;
+        private Func<T, bool> _filters;
+        private Expression<Func<T, string>> _sortBy;
 
-        public DocumentStoreOf()
+        private DocumentStoreOf()
         {
             try
             {
@@ -39,20 +43,53 @@ namespace Hackaton2015.DocumentDb.Framework
             }
         }
 
-        public static INewQuery NewQuery()
+        public static INewQuery<T> NewQuery()
         {
-          throw new NotImplementedException();
+            return new DocumentStoreOf<T>();
+        }
+
+        public IAgainstCollection<T> AgainstCollection(string collectionName)
+        {
+            _collectioName = collectionName;
+            return this;
+        }
+
+        public IWithFilters<T> WithFilters(Func<T, bool> filters)
+        {
+            _filters = filters;
+            return this;
+        }
+
+        public ISortedBy SortBy(Expression<Func<T, string>> sortBy)
+        {
+            _sortBy = sortBy;
+            return this;
+        }
+
+        public IWithPagingInfo WithPagingInfoLike()
+        {
+            return this;
+        }
+
+        public dynamic PerformSearchAsync()
+        {
+            return new {};
         }
     }
 
-    public interface INewQuery
+    public interface INewQuery<T>
     {
-        IWithFilters WithFilters();
+        IAgainstCollection<T> AgainstCollection(string collectionName);
     }
 
-    public interface IWithFilters
+    public interface IAgainstCollection<T>
     {
-        ISortedBy SortBy();
+        IWithFilters<T> WithFilters(Func<T,bool> filters);
+    }
+
+    public interface IWithFilters<T>
+    {
+        ISortedBy SortBy(Expression<Func<T,string>> sortBy);
     }
 
     public interface ISortedBy
