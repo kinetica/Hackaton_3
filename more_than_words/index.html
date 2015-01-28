@@ -5,41 +5,69 @@
   <title>More than words</title>
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/style.css">
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+  
 </head>
 <body>
   <script type="text/x-handlebars">
-    <h2>Welcome to Ember.js</h2>
-
+    <h2>Welcome to More than words</h2>
+    <div class="navbar">
+      <div class="navbar-inner">
+        {{#link-to 'index' class='brand'}}Main{{/link-to}}
+        <ul class="nav">
+          <li>{{#link-to 'languages'}}Languages{{/link-to}}</li>
+          <li>{{#link-to 'about'}}About{{/link-to}}</li>
+        </ul>
+      </div>
+    </div>
     {{outlet}}
   </script>
 
-  <script type="text/x-handlebars" id="index">
-    <ul>
-      {{#each item in model}}
-      <li>{{item}}</li>
-      {{/each}}
-    </ul>
-  </script>
+  <script type="text/x-handlebars" id="index"></script>
 
   <script type="text/x-handlebars" id="languages">
-    <ul>
-      {{#each item in model}}
-      <li>{{#link-to 'language' item.id}} {{item.name}}   {{/link-to}}</li>
-      {{/each}}
-    </ul>
-    <div>
-     {{outlet}}	
-   </div>
+	  
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span3">
+          <table class='table'>
+            <thead>
+              <tr><th>Languages</th></tr>
+            </thead>
+
+            <tbody>
+              {{#each item in model}}
+                <tr>
+                  <td>
+                    {{#link-to 'language' item.id}}{{item.name}}{{/link-to}}
+                  </td>
+                </tr>
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="span9">
+          {{outlet}}
+        </div>
+      </div>
+    </div>
+	
+	
+
  </script>  
  
 <script type="text/x-handlebars" id="language">
-	{{model.name}}
+    <div class="container-fluid">
+	<div class="row-fluid">
+	<h1>{{model.name}}</h1>
 	<ul>
 		{{#each item in model.words}}
 			<li>{{render "word" item }}</li>
 		{{/each}}
 	</ul>
-	
+	</div>
+	</div>
 </script>
 
 <script type="text/x-handlebars" data-template-name="word">
@@ -57,6 +85,15 @@
 </script>
 
 
+  <script type="text/x-handlebars" id="about">
+    <div class='about'>
+      <p>Algo</p>
+
+    <div class='about'>
+
+      <p>Algo más.</p>
+    </div>
+  </script>
 
 
 <script src="js/libs/jquery-1.10.2.js"></script>

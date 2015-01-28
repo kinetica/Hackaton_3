@@ -24,6 +24,8 @@ App.Router.map(function () {
 	this.resource('languages', function(){
 		this.resource('language', { path: '/:language_id' });
 	});
+	
+	this.resource('about');
 });
 
 App.WordView = Ember.View.extend({
@@ -68,9 +70,7 @@ App.LanguageRoute = Ember.Route.extend({
 });
 
 App.IndexRoute = Ember.Route.extend({
-		model : function () {
-			return ['red', 'yellow', 'blue'];
-		}
+
 	});
 
 // Idiomas tienen palabras
@@ -79,3 +79,11 @@ App.IndexRoute = Ember.Route.extend({
 // inglés => palabras => traducción
 
 // castellano
+
+Ember.Handlebars.helper('format-markdown', function(input) {
+  return new Handlebars.SafeString(showdown.makeHtml(input));
+});
+
+Ember.Handlebars.helper('format-date', function(date) {
+  return moment(date).fromNow();
+});
