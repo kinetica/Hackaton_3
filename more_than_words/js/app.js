@@ -26,6 +26,7 @@ App.Router.map(function () {
 	});
 	
 	this.resource('about');
+	this.resource('play');
 });
 
 App.WordView = Ember.View.extend({
