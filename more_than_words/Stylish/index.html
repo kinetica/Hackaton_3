@@ -203,7 +203,7 @@
                         <div class="row-fluid">
                         <h1>{{model.name}}</h1>
                         <ul class="list-group">
-                        
+
                             {{#each item in model.words}}
                                 <li class="list-group-item list-group-item-success">{{render "word" item }}</li>
                             {{/each}}
@@ -248,7 +248,39 @@
 
 
 
+<script type="text/x-handlebars" id="play">
 
+        <header>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+<div class="well well-lg">
+
+  <label for="">Score: {{score}}</label>
+    {{result}}
+    
+    <div>
+        {{model.word.word}}
+    </div>
+  
+    <div>
+        <ul>
+            {{#each item in model.translations}}
+                <li>{{item}} <button {{action 'test' item}} >Correcta!</button></li>
+            {{/each}}
+        </ul>
+    </div>
+
+</div>
+
+
+                        </div>
+                </div>
+            </div>
+        </header>
+  </script>
 
 
 
