@@ -1,6 +1,20 @@
 App = Ember.Application.create();
 
-var languages = [{
+var languages = [
+		{
+			id: '1',
+			name : 'Español',
+			words : [{
+				id : '1',
+				word : 'perro',
+				translation : 'dog'
+			},{
+				id : '2',
+				word : 'gato',
+				translation : 'cat'
+			}]
+		},
+		{
 		id : '3',
 		name : 'English',
 		words : [{
