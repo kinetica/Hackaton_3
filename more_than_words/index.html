@@ -21,6 +21,22 @@
     </ul>
   </script>
 
+  <script type="text/x-handlebars" id="languages">
+    <ul>
+    {{#each item in model}}
+		<li>{{#link-to 'language'}} {{item.name}}   {{/link-to}}</li>
+    {{/each}}
+    </ul>
+	<div>
+	{{outlet}}	
+	</div>
+ </script>  
+ 
+ <script type="text/x-handlebars" id="language">
+		Soy solo un detalle
+ </script>
+  
+
   <script src="js/libs/jquery-1.10.2.js"></script>
   <script src="js/libs/handlebars-v2.0.0.js"></script>
   <script src="js/libs/ember-1.9.1.js"></script>
