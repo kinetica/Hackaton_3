@@ -1,20 +1,6 @@
 App = Ember.Application.create();
 
-var languages = [
-		{
-			id: '1',
-			name : 'Español',
-			words : [{
-				id : '1',
-				word : 'perro',
-				translation : 'dog'
-			},{
-				id : '2',
-				word : 'gato',
-				translation : 'cat'
-			}]
-		},
-		{
+var languages = [{
 		id : '3',
 		name : 'English',
 		words : [{
@@ -112,14 +98,17 @@ App.PlayRoute = Ember.Route.extend({
 
 App.PlayController = Ember.ObjectController.extend({
 	result: '',
+	score: 0,
 	actions:{
 		test: function(a){
 			if(a == PlayService.currentWord.word.translation){
+				this.set("score", this.get("score") +10);
 				this.set("result", 'Correct!');
 				PlayService.nextWord();
 				currentword.set("word", PlayService.currentWord.word); 
 				currentword.set("translations", PlayService.currentWord.translations); 
 			}else{
+				this.set("score", this.get("score") - 5);
 				this.set("result", 'Wrong :(');
 			
 			}
@@ -146,7 +135,7 @@ PlayService.nextWord = function(){
 		
 		do{
 			randomIndex = Math.round( Math.random(10) * maxLength - 1);
-		}while(randomIndex == this.currentIndex);
+		}while(randomIndex == this.currentIndex || randomIndex == exclude);
 		
 		console.log(randomIndex);
 		

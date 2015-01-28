@@ -254,21 +254,25 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
+<h1>You are playing now, score: {{score}}</h1>
 
+<div class="jumbotron">
 
-<div class="well well-lg">
-
-  <label for="">Score: {{score}}</label>
-    {{result}}
-    
-    <div>
+    <h2 style="color: #352C5C;">
         {{model.word.word}}
-    </div>
-  
+    </h2>
+
+    <h2 style="color: red;">
+        {{result}}
+    </h2>
+
     <div>
-        <ul>
+        <ul class="list-group">
             {{#each item in model.translations}}
-                <li>{{item}} <button {{action 'test' item}} >Correcta!</button></li>
+                <li class="list-group-item list-group-item-success">
+                    <h4>{{item}}</h4>
+                    <button class="btn btn-info btn-lg" {{action 'test' item}}> &nbsp; Correcta!</button>
+                </li>
             {{/each}}
         </ul>
     </div>
@@ -276,11 +280,11 @@
 </div>
 
 
-                        </div>
-                </div>
+                    </div>
             </div>
-        </header>
-  </script>
+        </div>
+    </header>
+</script>
 
 
 
