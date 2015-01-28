@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('palabras').controller('PalabrasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Palabras',
-	function($scope, $stateParams, $location, Authentication, Palabras) {
+angular.module('palabras').controller('PalabrasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Palabras', 'Traducciones',
+	function($scope, $stateParams, $location, Authentication, Palabras, Traducciones) {
 		$scope.authentication = Authentication;
 
 		/*$scope.create = function() {
@@ -52,6 +52,13 @@ angular.module('palabras').controller('PalabrasController', ['$scope', '$statePa
 
 		$scope.findOne = function() {
 			$scope.palabra = Palabras.get({
+				palabraId: $stateParams.palabraId
+			});
+			$scope.obtenerTraduccionesParaPalabra();
+		};
+		
+		$scope.obtenerTraduccionesParaPalabra = function() {
+			$scope.traducciones = Traducciones.get({
 				palabraId: $stateParams.palabraId
 			});
 		};

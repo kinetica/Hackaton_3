@@ -27,11 +27,11 @@ var mongoose = require('mongoose'),
 };*/
 
 /**
- * Show the current article
+ * Muestra las traducciones para cierta palabra
  */
-/*exports.read = function(req, res) {
-	res.json(req.article);
-};*/
+exports.read = function(req, res) {
+	res.json(req.traducciones);
+};
 
 /**
  * Update a article
@@ -108,20 +108,20 @@ var mongoose = require('mongoose'),
 };*/
 
 exports.traduccionesByPalabraID = function(req, res, next, palabraId) {
-
 	if (!mongoose.Types.ObjectId.isValid(palabraId)) {
 		return res.status(400).send({
 			message: 'palabra Id is invalid'
 		});
 	}
-
+console.log('voy a probar el id:',mongoose.Types.ObjectId(palabraId));
 	Traduccion.find({ palabra:  mongoose.Types.ObjectId(palabraId)}).exec(function(err, traducciones) {
 		if (err) return next(err);
 		if (!traducciones) {
 			return res.status(404).send({
-  				message: 'traducciones not found'
+  				message: 'traducciones not found' 
   			});
 		}
+		console.log('cuantas traducciones?', traducciones);
 		req.traducciones = traducciones;
 		next();
 	});
