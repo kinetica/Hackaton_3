@@ -1,0 +1,8 @@
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\bin\Debug\Hackaton2015.DocumentDb.Tests.dll
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\bin\Debug\Hackaton2015.DocumentDb.Tests.pdb
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\bin\Debug\Microsoft.Azure.Documents.Client.dll
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\obj\Debug\Hackaton2015.DocumentDb.Tests.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\obj\Debug\Hackaton2015.DocumentDb.Tests.dll
+C:\Users\Administrator\Documents\src\Hackaton_3\documents_db_fwk\Hackaton2015.DocumentDb\Hackaton2015.DocumentDb.Tests\obj\Debug\Hackaton2015.DocumentDb.Tests.pdb
