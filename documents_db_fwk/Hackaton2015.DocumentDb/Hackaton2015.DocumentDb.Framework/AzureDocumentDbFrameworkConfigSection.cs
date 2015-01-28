@@ -51,5 +51,32 @@ namespace Hackaton2015.DocumentDb.Framework
                 this["key"] = value;
             }
         }
+
+        [ConfigurationProperty("database", IsRequired = true)]
+        public string Database
+        {
+            get
+            {
+                return (string)this["database"];
+            }
+            set
+            {
+                this["database"] = value;
+            }
+        }
+
+        [ConfigurationProperty("createIfNotExist", IsRequired = true)]
+        public bool CreateIfNotExist
+        {
+            get
+            {
+                return (bool)this["createIfNotExist"];
+            }
+            set
+            {
+                this["createIfNotExist"] = value;
+            }
+        }
+        
     }
 }
