@@ -14,6 +14,9 @@ namespace Hackaton2015.DocumentDb.Tests
 {
   public class LogMessage
   {
+    [JsonProperty(PropertyName = "id")]
+    public string Id { get; set; }
+
     public string MessageId { get; set; }
 
     public int Type { get; set; }

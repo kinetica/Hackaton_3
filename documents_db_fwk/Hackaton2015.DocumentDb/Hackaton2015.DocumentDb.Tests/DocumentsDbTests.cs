@@ -57,6 +57,7 @@ namespace Hackaton2015.DocumentDb.Tests
           var json =
               new LogMessage()
               {
+                Id = Guid.NewGuid().ToString(),
                 MessageId = Guid.NewGuid().ToString(),
                 Type = 64,
                 MachineName = "TEST-PC",
