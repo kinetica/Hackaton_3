@@ -74,7 +74,7 @@ namespace Hackaton2015.DocumentDb.Tests
                 Id = "8d279568-2ce5-48b9-afae-971f55c16eaf"
               };
 
-          var doc = client.CreateDocumentQuery<LogMessage>(documentCollection.SelfLink, "Select * from LogEntries").Where(x => x.Id == "8d279568-2ce5-48b9-afae-971f55c16eaf").AsEnumerable().FirstOrDefault();
+          var doc = client.CreateDocumentQuery<Document>(documentCollection.SelfLink, "Select * from LogEntries").Where(x => x.Id == "8d279568-2ce5-48b9-afae-971f55c16eaf").AsEnumerable().FirstOrDefault();
  
 
           if (doc != null)
