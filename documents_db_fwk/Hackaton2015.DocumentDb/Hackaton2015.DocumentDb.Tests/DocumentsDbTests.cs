@@ -71,21 +71,24 @@ namespace Hackaton2015.DocumentDb.Tests
                 Data = "",
                 Request = 1,
                 Command = 1,
-                Id = "8d279568-2ce5-48b9-afae-971f55c16eaf"
               };
 
-          var doc = client.CreateDocumentQuery<Document>(documentCollection.SelfLink, "Select * from LogEntries").Where(x => x.Id == "8d279568-2ce5-48b9-afae-971f55c16eaf").AsEnumerable().FirstOrDefault();
- 
+          var doc = client.CreateDocumentQuery<LogMessage>(documentCollection.SelfLink, "Select * from LogEntries").Where(x => x.MessageId == json.MessageId).AsEnumerable().FirstOrDefault();
 
-          if (doc != null)
-	        {
-            doc = client.ReplaceDocumentAsync(doc.SelfLink, json).Result;		 
+
+          if (doc == null)
+          {
+            var result = client.CreateDocumentAsync(documentCollection.SelfLink, json).Result;
           }
+          // Esto no funciona.
+          //else
+          //{
+          //  client.ReplaceDocumentAsync(documentCollection.SelfLink, json);
+          //}
    
           Assert.IsNotNull(client);
           Assert.IsNotNull(database);
           Assert.IsNotNull(documentCollection);
-          Assert.IsNotNull(doc);
         }
 
         private static DocumentClient GetClient()
