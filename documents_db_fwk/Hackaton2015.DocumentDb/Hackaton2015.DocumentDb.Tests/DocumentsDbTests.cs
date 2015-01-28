@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Azure.Documents.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Configuration;
@@ -54,11 +53,11 @@ namespace Hackaton2015.DocumentDb.Tests
           var database = GetDatabase(client);
           var documentCollection = GetCollection(client, database);
 
-       // Create a LogMessage document.
+          // Create a LogMessage document.
           var json =
-              new
+              new LogMessage()
               {
-                Id = 1,
+                Id = "8d279568-2ce5-48b9-afae-971f55c16eaf",
                 MessageId = Guid.NewGuid().ToString(),
                 Type = 64,
                 MachineName = "TEST-PC",
@@ -70,19 +69,23 @@ namespace Hackaton2015.DocumentDb.Tests
                 CustomerId = "",
                 Timestamp = DateTime.Now,
                 Text = "Inserting a LogMessage document",
-                Data = "XXX",
+                Data = "",
                 Request = 1,
                 Command = 1,
               };
 
-          var document = client.CreateDocumentAsync(documentCollection.SelfLink, json).Result;
+          var doc = client.CreateDocumentQuery<Document>(documentCollection.SelfLink, "Select * from LogEntries").Where(x => x.Id == "8d279568-2ce5-48b9-afae-971f55c16eaf").AsEnumerable().FirstOrDefault();
+ 
 
-          //var documents = client.CreateDocumentQuery(documentCollection.SelfLink, "select * from LogEntries").Where(x => x.Id == json.Id).ToArray();
+          if (doc != null)
+	        {
+            doc = client.ReplaceDocumentAsync(doc.SelfLink, json).Result;		 
+          }
+   
           Assert.IsNotNull(client);
           Assert.IsNotNull(database);
           Assert.IsNotNull(documentCollection);
-          Assert.IsNotNull(document);
-          Assert.IsTrue(document.StatusCode == System.Net.HttpStatusCode.Created);
+          Assert.IsNotNull(doc);
         }
 
         private static DocumentClient GetClient()
