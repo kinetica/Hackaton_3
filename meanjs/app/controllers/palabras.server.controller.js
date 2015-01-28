@@ -27,11 +27,11 @@ var mongoose = require('mongoose'),
 };*/
 
 /**
- * Show the current article
+ * Show the current palabra
  */
-/*exports.read = function(req, res) {
-	res.json(req.article);
-};*/
+exports.read = function(req, res) {
+	res.json(req.palabra);
+};
 
 /**
  * Update a article
