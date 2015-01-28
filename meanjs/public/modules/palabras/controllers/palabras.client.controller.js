@@ -47,6 +47,16 @@ angular.module('palabras').controller('PalabrasController', ['$scope', '$statePa
 
 		$scope.find = function() {
 			$scope.palabras = Palabras.query();
+			
+			$scope.obtenerRespuestas();
+		};
+		
+		$scope.obtenerRespuestas = function(){
+			$scope.respuestasPorUsuario = Respuestas.get();
+			console.log($scope.respuestasPorUsuario);/*
+			$scope.respuestasPorUsuario.$promise.finally(function(){
+				for (var i=0; i<$scope.respuestasPorUsuario.
+			});*/
 		};
 
 		$scope.findOne = function() {

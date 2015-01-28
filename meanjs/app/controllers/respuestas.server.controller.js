@@ -52,6 +52,21 @@ exports.update = function(req, res) {
 };
 
 /**
+ * respuestas correctas por usuario
+ */
+exports.respuestasPorUsuario = function(req, res) {
+	
+	Respuesta.find({user: req.user}).populate('palabra').populate('traduccion').exec(function(err, respuestas) {
+		if (!respuestas) {
+			return res.status(404).send({
+  				message: 'respuestas not found'
+  			});
+		}
+		res.json(respuestas);
+	});
+};
+
+/**
  * Delete an article
  */
 /*exports.delete = function(req, res) {

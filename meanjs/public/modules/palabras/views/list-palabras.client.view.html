@@ -11,7 +11,7 @@
 			<h4 class="list-group-item-heading" data-ng-bind="palabra.palabra"></h4>
 		</a>
 	</div>
-	<!--<div class="alert alert-warning text-center" data-ng-if="palabras.$resolved && !palabras.length">
-		No articles yet, why don't you <a href="/#!/palabras/create">create one</a>?
-	</div>-->
+	<div class="alert alert-warning text-center" data-ng-if="respuestasPorUsuario.$resolved && respuestasPorUsuario.length">
+		Felicitaciones, respondiste {{respuestasPorUsuario.length}} veces... 
+	</div>
 </section>

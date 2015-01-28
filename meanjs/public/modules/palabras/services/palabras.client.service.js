@@ -32,10 +32,11 @@ angular.module('palabras').factory('Respuestas', ['$resource',
 	function($resource) {
 		return $resource('respuestas/:palabraId', {
 			palabraId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
+		}, 
+		{ 'get':  { 
+			method: 'GET', 
+			isArray: true
+			    }
 		});
 	}
 ]);

@@ -84,6 +84,7 @@ exports.list = function(req, res) {
 	});
 };
 
+
 /**
  * Palabra middleware
  */
