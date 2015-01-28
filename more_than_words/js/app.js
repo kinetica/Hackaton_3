@@ -1,7 +1,7 @@
 App = Ember.Application.create();
 
 var languages = [{
-		id : '1',
+		id : '3',
 		name : 'English',
 		words : [{
 				id : '1',
@@ -18,14 +18,11 @@ var languages = [{
 			}
 		]
 	}
-
 ];
 
 App.Router.map(function () {
-	// put your routes here
-	
 	this.resource('languages', function(){
-		this.resource('language');			
+		this.resource('language', { path: '/:language_id' });			
 	});
 });
 
@@ -36,8 +33,11 @@ App.LanguagesRoute = Ember.Route.extend({
 });
 
 App.LanguageRoute = Ember.Route.extend({
-	model: function(){
-		return '';
+	model: function(values){
+		var X = languages.filter(function (item){
+			return item.id == values.language_id;
+		})[0];
+		return X;
 	}
 });
 
