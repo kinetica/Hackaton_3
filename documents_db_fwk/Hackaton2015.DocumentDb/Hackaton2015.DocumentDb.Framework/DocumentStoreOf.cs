@@ -41,7 +41,7 @@ namespace Hackaton2015.DocumentDb.Framework
 
         public static INewQuery NewQuery()
         {
-            
+            throw new NotImplementedException();
         }
     }
 
