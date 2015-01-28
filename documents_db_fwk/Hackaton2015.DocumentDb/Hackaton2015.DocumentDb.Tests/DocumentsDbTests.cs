@@ -12,6 +12,7 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.Documents.Client;
 using Microsoft.Azure.Documents.Linq;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Hackaton2015.DocumentDb.Tests
 {
@@ -49,38 +50,39 @@ namespace Hackaton2015.DocumentDb.Tests
         [TestMethod]
         public void TestDocumentInsertOrUpdate()
         {
-          //var client = GetClient();
-          //var database = GetDatabase(client);
-          //var documentCollection = GetCollection(client, database);
+          var client = GetClient();
+          var database = GetDatabase(client);
+          var documentCollection = GetCollection(client, database);
 
-          //// Create the Andersen family document.
-          //var json = new
-          //{
-          //  Id = "Element",
-          //  LastName = "Andersen",
-          //  Parents = new[] { new { FirstName = "Thomas" }, new { FirstName = "Mary Kay"}},
-          //  Children = new[] { 
-          //    new  { 
-          //      FirstName = "Henriette Thaulow", 
-          //      Gender = "female", 
-          //      Grade = 5, 
-          //      Pets = new [] 
-          //      {
-          //        new { GivenName = "Fluffy" } 
-          //      }
-          //    } 
-          //  },
-          //  Address = new { State = "WA", County = "King", City = "Seattle" },
-          //  IsRegistered = true
-          //};
+       // Create a LogMessage document.
+          var json =
+              new
+              {
+                Id = 1,
+                MessageId = Guid.NewGuid().ToString(),
+                Type = 64,
+                MachineName = "TEST-PC",
+                RoleName = "ANCILE.NextGen.Logging.WorkerRole",
+                InstanceId = "deployment23(413).ANCILE.NextGen.ANCILE.NextGen.Logging.WorkerRole_IN_0",
+                Application = "Not Configured",
+                SessionId = "",
+                TenantId = "",
+                CustomerId = "",
+                Timestamp = DateTime.Now,
+                Text = "Inserting a LogMessage document",
+                Data = "XXX",
+                Request = 1,
+                Command = 1,
+              };
 
-          //var documents = client.CreateDocumentQuery(documentCollection.SelfLink, "select * from LogEntries").ToArray();
-          
-          //Assert.IsNotNull(client);
-          //Assert.IsNotNull(database);
-          //Assert.IsNotNull(documentCollection);
-          //Assert.IsNotNull(documents);
+          var document = client.CreateDocumentAsync(documentCollection.SelfLink, json).Result;
 
+          //var documents = client.CreateDocumentQuery(documentCollection.SelfLink, "select * from LogEntries").Where(x => x.Id == json.Id).ToArray();
+          Assert.IsNotNull(client);
+          Assert.IsNotNull(database);
+          Assert.IsNotNull(documentCollection);
+          Assert.IsNotNull(document);
+          Assert.IsTrue(document.StatusCode == System.Net.HttpStatusCode.Created);
         }
 
         private static DocumentClient GetClient()
