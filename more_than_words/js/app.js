@@ -98,14 +98,17 @@ App.PlayRoute = Ember.Route.extend({
 
 App.PlayController = Ember.ObjectController.extend({
 	result: '',
+	score: 0,
 	actions:{
 		test: function(a){
 			if(a == PlayService.currentWord.word.translation){
+				this.set("score", this.get("score") +10);
 				this.set("result", 'Correct!');
 				PlayService.nextWord();
 				currentword.set("word", PlayService.currentWord.word); 
 				currentword.set("translations", PlayService.currentWord.translations); 
 			}else{
+				this.set("score", this.get("score") - 5);
 				this.set("result", 'Wrong :(');
 			
 			}
@@ -132,7 +135,7 @@ PlayService.nextWord = function(){
 		
 		do{
 			randomIndex = Math.round( Math.random(10) * maxLength - 1);
-		}while(randomIndex == this.currentIndex);
+		}while(randomIndex == this.currentIndex || randomIndex == exclude);
 		
 		console.log(randomIndex);
 		
