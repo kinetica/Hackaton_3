@@ -42,6 +42,7 @@
       <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -56,11 +57,19 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ApiDesignTests.cs" />
     <Compile Include="DocumentsDbTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Hackaton2015.DocumentDb.Framework\Hackaton2015.DocumentDb.Framework.csproj">
+      <Project>{58FEF4F1-E52C-47C1-874E-2A455581B407}</Project>
+      <Name>Hackaton2015.DocumentDb.Framework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
