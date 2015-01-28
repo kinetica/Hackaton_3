@@ -15,17 +15,11 @@ namespace Hackaton2015.DocumentDb.Tests
         {
             var store = new DocumentStoreOf<User>();
 
-            //var messages = DocumentStoreOf<User>.NewQuery()
-            //                                    .WithFilters()
-            //                                    .SortBy()
-            //                                    .WithPagingInfoLike()
-            //                                    .PerformSearchAsync()
-
-            //                      .SearchAsync(settings.Filters, 
-            //                      settings.SortColumn, 
-            //                      settings.SortAscending, 
-            //                      (pageNumber - 1) * settings.ItemsPerPage, 
-            //                      settings.ItemsPerPage);
+            var messages = DocumentStoreOf<User>.NewQuery()
+                                                .WithFilters()
+                                                .SortBy()
+                                                .WithPagingInfoLike()
+                                                .PerformSearchAsync();
         }
     }
 
