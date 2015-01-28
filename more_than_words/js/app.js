@@ -22,8 +22,32 @@ var languages = [{
 
 App.Router.map(function () {
 	this.resource('languages', function(){
-		this.resource('language', { path: '/:language_id' });			
+		this.resource('language', { path: '/:language_id' });
 	});
+});
+
+App.WordView= Ember.View.extend({
+	templateName: 'word',
+});
+
+App.WordController = Ember.ObjectController.extend({
+  isEditing: false,
+  
+  actions: {
+    edit: function() {
+      this.set('isEditing', true);
+    },
+
+    doneEditing: function() {
+      this.set('isEditing', false);
+    }
+  }
+});
+
+App.WordRoute = Ember.Route.extend({
+	model: function(){
+		return {word: 'test', translation: 'prueba'};
+	}
 });
 
 App.LanguagesRoute = Ember.Route.extend({
