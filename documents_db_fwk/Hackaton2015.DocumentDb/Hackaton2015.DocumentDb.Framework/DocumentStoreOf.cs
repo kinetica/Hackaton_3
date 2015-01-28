@@ -12,7 +12,7 @@ namespace Hackaton2015.DocumentDb.Framework
     {
         private DocumentClient _client;
         private Database _database;
-        private string _collectioName;
+        private string _collectionName;
         private Func<T, bool> _filters;
         private Expression<Func<T, string>> _sortBy;
 
@@ -50,7 +50,7 @@ namespace Hackaton2015.DocumentDb.Framework
 
         public IAgainstCollection<T> AgainstCollection(string collectionName)
         {
-            _collectioName = collectionName;
+            _collectionName = collectionName;
             return this;
         }
 
