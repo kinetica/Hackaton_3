@@ -13,9 +13,6 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var respuesta = new Respuesta(req.body);
-	respuesta.user = req.user;
-	respuesta.palabra = req.palabra;
-	respuesta.traduccion = req.traduccion;
 
 	respuesta.save(function(err) {
 		if (err) {

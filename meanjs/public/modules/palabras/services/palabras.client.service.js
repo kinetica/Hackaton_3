@@ -26,3 +26,16 @@ angular.module('palabras').factory('Traducciones', ['$resource',
 		});
 	}
 ]);
+
+//Respuestas service used for communicating with the palabras REST endpoints
+angular.module('palabras').factory('Respuestas', ['$resource',
+	function($resource) {
+		return $resource('respuestas/:palabraId', {
+			palabraId: '@_id'
+		}, {
+			update: {
+				method: 'PUT'
+			}
+		});
+	}
+]);

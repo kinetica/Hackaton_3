@@ -30,7 +30,9 @@ var mongoose = require('mongoose'),
  * Muestra las traducciones para cierta palabra
  */
 exports.read = function(req, res) {
-	res.json(req.traducciones);
+	var ret = req.traducciones;
+	delete ret.esCorrecto;
+	res.json(ret);
 };
 
 /**

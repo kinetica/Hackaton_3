@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('palabras').controller('PalabrasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Palabras', 'Traducciones',
-	function($scope, $stateParams, $location, Authentication, Palabras, Traducciones) {
+angular.module('palabras').controller('PalabrasController', ['$scope', '$stateParams', '$location', 'Authentication', 'Palabras', 'Traducciones', 'Respuestas',
+	function($scope, $stateParams, $location, Authentication, Palabras, Traducciones, Respuestas) {
 		$scope.authentication = Authentication;
 
 		/*$scope.create = function() {
@@ -47,7 +47,6 @@ angular.module('palabras').controller('PalabrasController', ['$scope', '$statePa
 
 		$scope.find = function() {
 			$scope.palabras = Palabras.query();
-			console.log(Palabras.query());
 		};
 
 		$scope.findOne = function() {
@@ -60,6 +59,29 @@ angular.module('palabras').controller('PalabrasController', ['$scope', '$statePa
 		$scope.obtenerTraduccionesParaPalabra = function() {
 			$scope.traducciones = Traducciones.get({
 				palabraId: $stateParams.palabraId
+			});
+		};
+		
+		$scope.seleccionarTraduccion = function(traduccionId) {
+			$scope.traduccionSeleccionada = traduccionId;
+		};
+		
+		$scope.aplicarRespuesta = function() {
+			if (!$scope.traduccionSeleccionada){
+				console.log('debe seleccionar una traduccion');
+				return;
+			}
+			
+			var respuesta = new Respuestas({
+				user: $scope.authentication.user._id,
+				palabra: $scope.palabra._id,
+				traduccion: $scope.traduccionSeleccionada
+			});
+			
+			respuesta.$save(function(response) {
+				$location.path('palabras');
+			}, function(errorResponse) {
+				//$scope.error = errorResponse.data.message;
 			});
 		};
 	}
