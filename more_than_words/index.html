@@ -86,14 +86,18 @@
 </script>
 
   <script type="text/x-handlebars" id="play">
-	
+	{{result}}
     
 	<div>
-	
+		{{model.word.word}}
 	</div>
-	
+  
 	<div>
-		
+	<ul>
+		{{#each item in model.translations}}
+			<li>{{item}} <button {{action 'test' item}} >Correcta!</button></li>
+		{{/each}}
+	</ul>
 	</div>
   </script>
 
