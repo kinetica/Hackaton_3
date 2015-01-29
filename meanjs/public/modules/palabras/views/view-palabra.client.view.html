@@ -1,0 +1,25 @@
+<section data-ng-controller="PalabrasController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1 data-ng-bind="palabra.palabra"></h1>
+	</div>
+	<!--<div class="pull-right" data-ng-show="authentication.user._id == article.user._id">
+		<a class="btn btn-primary" href="/#!/articles/{{article._id}}/edit">
+			<i class="glyphicon glyphicon-edit"></i>
+		</a>
+		<a class="btn btn-primary" data-ng-click="remove();">
+			<i class="glyphicon glyphicon-trash"></i>
+		</a>
+	</div>-->
+	<small>
+		<em class="text-muted">
+			Elegi la traduccion que corresponde:
+		</em>
+	</small>
+	<div class="radio" data-ng-repeat="traduccion in traducciones">
+		<label ng-click="seleccionarTraduccion(traduccion._id)">
+			<input type="radio" id="{{traduccion._id}}" name="traducciones" />{{traduccion.traduccion}}
+		</label>
+	</div>
+	<div class="btn btn-primary" ng-click="aplicarRespuesta()">Aplicar</div>
+	<!--a partir de aca, deberiamos mostrar las posibles traducciones (si el usuario ya contesto previamente, preseleccionarla)-->
+</section>
